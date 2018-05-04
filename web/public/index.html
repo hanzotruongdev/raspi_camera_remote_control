@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+
+    <title>Drone camera controller</title>
+
+  </head>
+  <body>
+    <div class="container">
+      <div class="text-center bg-light">
+
+        <h1 class="text-center mb-2 pt-5">Drone Camera Controller</h1>
+
+        <ul class="nav nav-tabs" role="tablist">
+          <li class="nav-item active">
+            <a class="nav-link active" href="#capture" role="tab" data-toggle="tab">Capture</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#record" role="tab" data-toggle="tab">Record</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content bg-white border border-top-0">
+          <!-- caputure -->
+          <div role="tabpanel" class="tab-pane active" id="capture">
+            <div class="row">
+              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="mb-5 mt-5">
+                  <img src="a.jpg" alt="" class="img-responsive img-thumbnail center-block" />
+                </div>
+                <button 
+                  type="button" 
+                  id="capture-button"
+                  onclick="captureImage()" 
+                  class="btn btn-secondary mx-auto mb-2">Capture</button>   
+              </div>            
+            </div>
+          </div>
+
+          <!-- record -->
+          <div role="tabpanel" class="tab-pane" id="record">
+            <div class="row">
+              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="mb-5 mt-5">
+                  <img src="a.jpg" alt="" class="img-responsive img-thumbnail center-block" />
+                </div>
+                <button 
+                  type="button" 
+                  id="record-button"
+                  onclick="recordVideo()" 
+                  class="btn btn-secondary mx-auto mb-2">RECORD</button>   
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- End tab panes -->
+
+      </div>
+    </div>
+
+    <!-- Import and configure the Firebase SDK -->
+    <!-- These scripts are made available when the app is served or deployed on Firebase Hosting -->
+    <!-- If you do not serve/host your project using Firebase Hosting see https://firebase.google.com/docs/web/setup -->
+    <script src="/__/firebase/3.9.0/firebase-app.js"></script>
+    <script src="/__/firebase/3.9.0/firebase-auth.js"></script>
+    <script src="/__/firebase/3.9.0/firebase-database.js"></script>
+    <script src="/__/firebase/init.js"></script>
+    <script src="script.js"></script>
+
+    <!-- Optional JavaScript -->
+    <script type="text/javascript">
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyCcopWrUWWicMOv0okVhEtz7yEf4qHXFJU",
+        authDomain: "controldronecamera.firebaseapp.com",
+        databaseURL: "https://controldronecamera.firebaseio.com",
+        projectId: "controldronecamera",
+        storageBucket: "controldronecamera.appspot.com",
+        messagingSenderId: "1052322724815"
+      };
+
+      firebase.initializeApp(config);
+
+      document.addEventListener('DOMContentLoaded', function() {
+      // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+      // // The Firebase SDK is initialized and available here!
+      //
+      // firebase.auth().onAuthStateChanged(user => { });
+      // firebase.database().ref('/path/to/ref').on('value', snapshot => { });
+      // firebase.messaging().requestPermission().then(() => { });
+      // firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
+      //
+      // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+
+        try {
+          let app = firebase.app();
+          let features = ['auth', 'database', 'messaging', 'storage'].filter(feature => typeof app[feature] === 'function');
+          document.getElementById('load').innerHTML = `Firebase SDK loaded with ${features.join(', ')}`;
+        } catch (e) {
+          console.error(e);
+          document.getElementById('load').innerHTML = 'Error loading the Firebase SDK, check the console.';
+        }
+      });
+    </script>
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+
+  </body>
+</html>
